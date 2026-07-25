@@ -35,14 +35,45 @@ To integrate and program temperature and accelerometer sensors in an embedded sy
 •	Print the final temperature and acceleration values.
  
 ## MATLAB CODE 
+clear; clc; close all;  
+  
+%% Simulation Parameters  
+time = linspace(0, 10, 100); % Simulate for 10 seconds with 100 samples  
+battery_temp = 25 + 5*sin(0.5*time); % Simulated temperature variation (25°C avg)  
+accX = 0.5*sin(2*time); % Simulated acceleration in X-axis  
+accY = 0.3*cos(2*time); % Simulated acceleration in Y-axis  
+accZ = 9.81 + 0.1*sin(time); % Simulated gravity effect on Z-axis  
+  
+%% Plot Temperature Sensor Data  
+figure;  
+subplot(2,1,1);  
+plot(time, battery_temp, 'r', 'LineWidth', 2);  
+title('Battery Temperature Monitoring');  
+xlabel('Time (s)');  
+ylabel('Temperature (°C)');  
+grid on;  
+  
+%% Plot Accelerometer Data  
+subplot(2,1,2);  
+plot(time, accX, 'b', time, accY, 'g', time, accZ, 'm', 'LineWidth', 2);  
+title('Vehicle Motion Tracking (Accelerometer)');  
+xlabel('Time (s)');  
+ylabel('Acceleration (m/s^2)');  
+legend('X-axis', 'Y-axis', 'Z-axis');  
+grid on;  
+  
+%% Display Key Data in Console  
+fprintf('Simulated Data at Final Time (t=10s):\n');  
+fprintf('Battery Temperature: %.2f°C\n', battery_temp(end));  
+fprintf('Acceleration (X, Y, Z): %.2f, %.2f, %.2f m/s^2\n', accX(end), accY(end), accZ(end));
 
 ## OUTPUT
 
- 
+ <img width="894" height="1600" alt="image" src="https://github.com/user-attachments/assets/1920c3bb-002d-4dcc-8e8b-6560451121d3" />
+
 ## RESULT
-•	The battery temperature and vehicle acceleration were successfully simulated.
-•	The system monitored and displayed sensor data in MATLAB.
-•	The output provides insights into EV motion and battery performance.
+<img width="1178" height="236" alt="image" src="https://github.com/user-attachments/assets/09d6361b-96dc-4eae-aff5-a6457f9ed001" />
+
  
 ## CONCLUSION
 This experiment demonstrated how temperature and motion sensors can be integrated into an embedded system for an electric vehicle simulation. This system can be extended to real sensors for live monitoring and safety applications.
